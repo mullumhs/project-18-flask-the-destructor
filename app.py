@@ -1,10 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/hello/<name>')
 def hello(name):
-    return f'Hello, {name}!'
+    inventory_items = [name, 'banana', 'cherry']
+    return render_template('hello.html', inventory=inventory_items)
 
 @app.route('/calc/<int:num1>/<string:operation>/<int:num2>')
 def calculator(num1, operation, num2):
