@@ -1,0 +1,9 @@
+li {
+    color: lightgoldenrodyellow;
+    text-shadow: 10px 10px 1px rgb(255, 255, 255);
+}
+
+body{
+    background-image: url("../images/mai.gif");
+    background-repeat: repeat;
+}

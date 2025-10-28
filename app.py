@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -26,6 +26,55 @@ def calculator(num1, operation, num2):
 
 
     return f'{num1} {operation} {num2} = {result}'
+
+
+@app.route('/meow/<word>/<int:number>')
+def meow(word, number):
+    awesome = []
+    while len(awesome) < number:
+        awesome.append(f"{word} is {len(awesome)}")
+    
+    return render_template('test.html', awesome=awesome)
+
+
+@app.route('/woof/<word>/<int:number>')
+def woof(word, number):
+    awesome = []
+    while len(awesome) < number:
+        awesome.append(f"{word} is {len(awesome)}")
+    
+    return render_template('boottest.html', awesome=awesome)
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+
+def contact():
+
+    if request.method == 'POST':
+
+        name = request.form['name']
+
+        email = request.form['email']
+
+        message = request.form['message']
+
+        # Here you would typically save this data or send an email
+
+        return redirect(url_for('thankyou', name=name, message=message))
+
+    return render_template('contact.html')
+
+
+
+@app.route('/thankyou')
+
+def thankyou():
+
+    name = request.args.get('name')
+
+    message = request.args.get('message')
+
+    return render_template('thankyou.html', name=name, message=message)
 
 if __name__ == '__main__':
 

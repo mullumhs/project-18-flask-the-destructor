@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<h1>Test Message</h1>
+
+<p> {% for item in awesome %}
+
+        <li>{{ item }}</li>
+
+        {% endfor %}</p>
+
+{% endblock %}
